@@ -1,0 +1,69 @@
+<!-- Ekapob Ukritnukun
+ThaiGQ@gmail.com
+March 02, 2017
+Track: MEAN
+MEAN Belt Exam: D - Doctor Appointment -->
+
+<h1 onload = "login()"> Logged in as: {{currentUser}} </h1>
+<h3> Today's date: {{today | date: 'MMMM:dd:yyyy'}} </h3>
+
+<a href="#" ng-click="logout()"> Logout </a>
+
+<div class="">
+    <label> Search by Patient Name: <input type="text" ng-model = "appointment._user.name"></label>
+    <label> Search by Patient Symptom(s): <input type="text" ng-model = "appointment.symptom"></label>
+    <table>
+        <tr>
+            <th> Date </th>
+            <th> Time </th>
+            <th> Patient Name </th>
+            <th> Symptom(s) </th>
+        </tr>
+        <tr ng-repeat = "appointment in appointments | filter : appointment | orderBy: 'date'" ng-if = "appointment.date | date: 'MMMM:dd:yyyy' >= today | date: 'MMMM:dd:yyyy'">
+            <td> {{appointment.date | date: "MMMM:dd:yyyy"}} </td>
+            <td> {{appointment.time}} </td>
+            <td> {{appointment._user.name}} </td>
+            <td> {{appointment.symptom}} <span ng-show = "userID == appointment._user._id && appointment.date | date: 'MMMM:dd:yyyy' - today | date: 'MMMM:dd:yyyy' > 24"> <a href="#" ng-click="delete(appointment._id)"> Cancel </a> </span></td>
+        </tr>
+    </table>
+</div>
+
+<a href="#!/new"> Add New Appointment </a>
+
+<!-- <div class="">
+    <form>
+        <h3> Add a new Topic: </h3>
+        <label> Topic: <input type="text" ng-model = "newTopic.title"> </label>
+        <label> Description: <textarea ng-model = "newTopic.description" rows="8" cols="80"> </textarea> </label>
+        <label> Category:
+            <select ng-model = "newTopic.category">
+                <option ng-repeat = "category in categories"> {{category}} </option>
+            </select>
+        </label>
+        <input type="submit" value = 'Post Topic' ng-click = "create_topic()">
+    </form>
+</div> -->
+
+<!-- <div ng-repeat = "message in messages">
+    <p> {{message._user.name}} - {{message.createdAt | date:"h:mm:a MM-dd-yyyy"}} </p>
+    <p> {{message.message}} </p>
+    <div ng-repeat = "comment in message.comments">
+        <p> {{comment._user.name}} - {{comment.createdAt | date:"h:mm:a MM-dd-yyyy"}} </p>
+        <p> {{comment.comment}} </p>
+    </div>
+    <form>
+        <h4> Post a comment: </h4>
+        <label> <input type="text" ng-model = "newComment[message._id].comment"> </label>
+        <input type="submit" value = 'Post Comment' ng-click = "create_comment(message._id)">
+    </form>
+</div> -->
+<!-- Table below displays all users in database -->
+<!-- <table>
+    <tr>
+        <td> User ID </td>
+        <td> User Name </td>
+    </tr>
+    <tr ng-repeat = "user in users">
+        <td> {{user._id}} </td>
+        <td> {{user.name}} </td>
+</table>

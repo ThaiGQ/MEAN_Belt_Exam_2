@@ -1,0 +1,24 @@
+<!-- Ekapob Ukritnukun
+ThaiGQ@gmail.com
+March 02, 2017
+Track: MEAN
+MEAN Belt Exam: D - Doctor Appointment -->
+
+<h2> New Appointment </h2>
+
+<form>
+    <label> Date: <input type="date" ng-model = "newAppointment.date"> </label>
+    <label> Time (24-hour only between 8 - 17): <input type="number" min = "8" max = "17" ng-model = "newAppointment.time"> </label>
+    <label> Symptom(s) <textarea ng-model = "newAppointment.symptom" rows="8" cols="80"></textarea> </label>
+    <input type="submit" value="Schedule Appointment" ng-click = "create_appointment()">
+</form>
+
+<div class="" ng-show="errors">
+    <h1>Error!</h1>
+    <div ng-repeat = "error in errors">
+        <p> {{error.message}} </p>
+    </div>
+    <p> {{errors.errmsg}} </p>
+</div>
+
+<a href="#!/dashboard"> Cancel </a>
